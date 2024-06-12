@@ -28,17 +28,15 @@ jobs:
         path: dist/
 
   publish-to-pypi:
-    name: >-
-      Publish Python 🐍 fb2reader 📦 to PyPI
+    name: Publish Python 🐍 fb2reader 📦 to PyPI
     needs:
     - build
     runs-on: ubuntu-latest
-    environment:
+    env:
       name: pypi
       url: https://pypi.org/p/fb2reader  # Replace <package-name> with your PyPI project name
-    permissions:
-      contents: __token__  # IMPORTANT: mandatory for making GitHub Releases
-      id-token: ${{ secrets.PYPI_PASSWORD }}  # IMPORTANT: mandatory for trusted publishing
+      TWINE_USERNAME: __token__  # IMPORTANT: mandatory for making GitHub Releases
+      TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}  # IMPORTANT: mandatory for trusted publishing
 
     steps:
     - name: Download all the dists
