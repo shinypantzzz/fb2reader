@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='fb2reader',
-    version='1.0.1',
+    version='1.0.2',
     author='Roman Kudryavskyi',
     author_email='devpilgrim@gmail.com',
     packages=['fb2reader'],
