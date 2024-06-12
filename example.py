@@ -1,17 +1,18 @@
 import fb2reader
 
 file_path = 'test.fb2'
-fb = fb2reader.fb2(file_path)
+book = fb2reader.fb2book(file_path)
 
-print(fb.get_isbn())
-print(fb.get_title())
-print(fb.get_description())
-print(fb.get_lang())
-print(fb.get_identifier())
-print(fb.get_series())
-print(fb.get_authors())
-print(fb.get_tags())
-print(fb.get_translators())
+print(book.get_isbn())
+print(book.get_title())
+print(book.get_description())
+print(book.get_lang())
+print(book.get_identifier())
+print(book.get_series())
+print(book.get_authors())
+print(book.get_tags())
+print(book.get_translators())
 
-print(fb.get_cover_image())
-print(fb.get_body())
+'''
+print(book.get_cover_image())
+print(book.get_body())'''

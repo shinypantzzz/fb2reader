@@ -1,13 +1,13 @@
 import os
 from bs4 import BeautifulSoup
 
-class fb2:
+class fb2book:
    
     def __init__(self, file):
         self.file = file
         with open(file, 'r+', encoding='utf-8') as fb2file:
             fb2_content = fb2file.read()
-        self.soup = BeautifulSoup(fb2_content, 'xml')
+        self.soup = BeautifulSoup(fb2_content, "xml")
         self.body = self.soup.find('body').prettify() if self.soup.find('body') else None
   
     def get_identifier(self):

@@ -29,5 +29,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 
-    install_requires=['bs4']
+    install_requires=['bs4', 'lxml']
 )
