@@ -12,6 +12,7 @@ print(book.get_series())
 print(book.get_authors())
 print(book.get_tags())
 print(book.get_translators())
+print(book.save_cover_image())
 
 '''
 print(book.get_cover_image())

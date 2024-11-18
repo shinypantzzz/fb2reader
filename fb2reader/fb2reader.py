@@ -23,12 +23,12 @@ class fb2book:
     def get_authors(self):
         authors = []
         for author in self.soup.find_all('author'):
-            first_name = author.find('first-name').text if author.find('first-name') else None
-            last_name = author.find('last-name').text if author.find('last-name') else None
-            middle_name = author.find('middle-name').text if author.find('middle-name') else None
-            if first_name != None:
-                authorFL = first_name + " " + middle_name + " " + last_name 
-                authors.append({authorFL})
+            first_name = author.find('first-name').text if author.find('first-name') else '?'
+            last_name = author.find('last-name').text if author.find('last-name') else '?'
+            middle_name = author.find('middle-name').text if author.find('middle-name') else '?'
+
+            authorFL = first_name + " " + middle_name + " " + last_name 
+            authors.append({authorFL})
         return authors
     
     def get_translators(self):
