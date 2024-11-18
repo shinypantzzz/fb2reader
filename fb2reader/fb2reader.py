@@ -1,5 +1,6 @@
 import os
 from bs4 import BeautifulSoup
+from base64 import b64decode
 
 class fb2book:
    
@@ -57,18 +58,24 @@ class fb2book:
         return self.soup.find('isbn').text if self.soup.find('isbn') else None
 
     def get_cover_image(self):
-        return self.soup.find('binary', {'content-type': 'image/jpeg'}) or self.soup.find('binary', {'content-type': 'image/png'})
+        cover_image_id = self.soup.find('coverpage').find('image').get('l:href')
+        return self.soup.find('binary', {'id': cover_image_id[1:]})
 
-    def save_cover_image(cover_image, cover_image_type, output_dir='output'):
-        """Сохраняет файл обложки."""
-        cover_image_name = cover_image['id']
+    def save_cover_image(self, output_dir='output'):
+        """Сохраняет файл обложки.""",
+        cover_image = self.get_cover_image()
+        if not cover_image:
+            return
+        
+        cover_image_name = cover_image.get('id', 'unknown')
         cover_image_data = cover_image.text
-        cover_image_path = os.path.join(output_dir, f'{cover_image_name}.{cover_image_type}')
+        cover_image_path = os.path.join(output_dir, cover_image_name)
 
         os.makedirs(output_dir, exist_ok=True)
         with open(cover_image_path, 'wb') as img_file:
-            img_file.write(bytearray.fromhex(cover_image_data))
-        return cover_image_name, cover_image_type
+            img_file.write(b64decode(cover_image_data))
+
+        return cover_image_name
 
     def save_body_as_html(self, output_dir='output', output_file_name='body'):
         """Сохраняет тело книги в HTML файл."""
